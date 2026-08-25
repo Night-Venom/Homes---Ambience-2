@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Homes & Ambience — Monochromatic Porcelain */
+    --background: 40 14% 97%;          /* Porcelain White */
+    --secondary-bg: 40 14% 97%;        /* Uniform porcelain white */
+    --foreground: 215 28% 17%;         /* Slate Ink */
+    --muted-foreground: 215 14% 45%;   /* Muted Slate */
+    --border: 220 10% 72%;             /* Charcoal Hairline */
+    --accent: 215 16% 52%;             /* Slate Accent */
+    --accent-2: 215 12% 60%;           /* Light Slate */
+    --accent-dark: 215 25% 27%;        /* Slate Block */
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 17%;
+    --primary: 215 28% 17%;
+    --primary-foreground: 40 14% 97%;
+    --secondary: 40 14% 97%;
+    --secondary-foreground: 215 28% 17%;
+    --muted: 40 14% 97%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --input: 220 10% 72%;
+    --ring: 215 28% 17%;
+    --radius: 0.25rem;
+
+    --font-heading: "DM Serif Display", ui-serif, Georgia, serif;
+    --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "DM Serif Display", ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "ss01", "cv01";
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+
+  ::selection {
+    background-color: hsl(var(--foreground));
+    color: hsl(var(--background));
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .min-touch {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply text-[14px] uppercase tracking-[0.1em] font-medium transition-colors duration-300;
+  }
+  .nav-link:hover {
+    @apply text-foreground;
+  }
+  .ghost-button {
+    @apply inline-flex items-center justify-center min-h-[44px] border border-foreground bg-transparent text-foreground text-[14px] uppercase tracking-[0.1em] font-medium px-10 py-4 transition-all duration-300 ease-out;
+  }
+  .ghost-button:hover {
+    @apply bg-foreground text-background;
+  }
+  .solid-button {
+    @apply inline-flex items-center justify-center min-h-[44px] bg-foreground text-background text-[13px] uppercase tracking-[0.15em] font-medium px-8 py-3.5 transition-colors duration-300 ease-out hover:bg-accent-dark;
+  }
+}

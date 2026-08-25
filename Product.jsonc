@@ -1,0 +1,56 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "description": "Product display name"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "Short editorial product description"
+    },
+    "price": {
+      "type": "number",
+      "title": "Price",
+      "description": "Unit price in GBP"
+    },
+    "category": {
+      "type": "string",
+      "title": "Category",
+      "enum": [
+        "Home",
+        "Tech",
+        "Lighting",
+        "Objects"
+      ],
+      "description": "Product category for filtering"
+    },
+    "image_url": {
+      "type": "string",
+      "title": "Image URL",
+      "format": "uri",
+      "description": "Product image URL"
+    },
+    "stock": {
+      "type": "integer",
+      "title": "Stock Inventory Count",
+      "description": "Units available in inventory",
+      "minimum": 0
+    },
+    "bestselling_rank": {
+      "type": "integer",
+      "title": "Bestselling Rank",
+      "description": "Original display order for bestselling sort"
+    }
+  },
+  "required": [
+    "title",
+    "price",
+    "category",
+    "image_url",
+    "stock"
+  ]
+}

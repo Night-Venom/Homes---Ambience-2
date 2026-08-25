@@ -1,0 +1,73 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "title": "User ID",
+      "description": "Unique identifier of the user who placed the order"
+    },
+    "items": {
+      "type": "array",
+      "title": "Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "description": "Line items in this order"
+    },
+    "total": {
+      "type": "number",
+      "title": "Total",
+      "description": "Order total in GBP"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "pending",
+        "paid",
+        "shipped",
+        "delivered"
+      ],
+      "default": "pending"
+    },
+    "shipping_address": {
+      "type": "string",
+      "title": "Shipping Address",
+      "description": "Formatted shipping address for the order"
+    }
+  },
+  "required": [
+    "user_id",
+    "items",
+    "total"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
