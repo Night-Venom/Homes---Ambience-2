@@ -6,6 +6,7 @@ import { Image } from "@/components/ui/image";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ProductCard from "@/components/catalogue/ProductCard";
+import { supabase } from '@/lib/supabase';
 
 const FILTERS = ["All", "Home", "Tech", "Lighting", "Objects"];
 
@@ -26,19 +27,32 @@ export default function Catalogue() {
   const [sortOpen, setSortOpen] = useState(false);
 
   useEffect(() => {
-    let mounted = true;
-    db.entities.Product.list("-created_date", 100)
-      .then((items) => {
-        if (mounted) {
-          setProducts(items);
-          setLoading(false);
-        }
-      })
-      .catch(() => mounted && setLoading(false));
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  let mounted = true
+
+  async function loadProducts() {
+    const { data, error } = await supabase
+      .from('products')
+      .select('id, title, description, category, price, image_url, bestselling_rank')
+      .order('bestselling_rank', { ascending: true })
+
+    if (!mounted) return
+
+    if (error) {
+      console.error('Could not load products:', error)
+      setProducts([])
+    } else {
+      setProducts(data)
+    }
+
+    setLoading(false)
+  }
+
+  loadProducts()
+
+  return () => {
+    mounted = false
+  }
+}, [])
 
   const visible = useMemo(() => {
     let list = [...products];
