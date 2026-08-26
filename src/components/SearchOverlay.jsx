@@ -1,5 +1,3 @@
-supabase.from('products').select('*').eq('id', id).maybeSingle();
-
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,11 +29,13 @@ export default function SearchOverlay({ open, onClose }) {
     if (!open) return;
     let active = true;
     setLoading(true);
-    db.entities.Product
-      .list("-created_date", 100)
-      .then((items) => active && setProducts(items))
-      .catch(() => {})
-      .finally(() => active && setLoading(false));
+    supabase
+  .from('products')
+  .select('*')
+  .order('bestselling_rank', { ascending: true })
+  .then(({ data, error }) => active && setProducts(error ? [] : data))
+  .catch(() => active && setProducts([]))
+  .finally(() => active && setLoading(false))
     return () => {
       active = false;
     };
