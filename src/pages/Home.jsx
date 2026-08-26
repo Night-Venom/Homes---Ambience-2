@@ -5,9 +5,9 @@ import { Image } from "@/components/ui/image";
 import { ArrowRight } from "lucide-react";
 
 const HERO_IMG = "https://media.base44.com/images/public/6a8e0409a2eda96a390c67c0/da3ce5894_generated_3ec62abd.png";
-const CAT_LINEN = "https://media.db.com/images/public/6a8e0409a2eda96a390c67c0/8193a2730_generated_7dc04849.png";
-const CAT_OAK = "https://media.db.com/images/public/6a8e0409a2eda96a390c67c0/3f89df7f7_generated_85d4a8b0.png";
-const CAT_STONE = "https://media.db.com/images/public/6a8e0409a2eda96a390c67c0/a39a6f2d1_generated_c7659008.png";
+const CAT_LINEN = "https://media.base44.com/images/public/6a8e0409a2eda96a390c67c0/8193a2730_generated_7dc04849.png";
+const CAT_OAK = "https://media.base44.com/images/public/6a8e0409a2eda96a390c67c0/3f89df7f7_generated_85d4a8b0.png";
+const CAT_STONE = "https://media.base44.com/images/public/6a8e0409a2eda96a390c67c0/a39a6f2d1_generated_c7659008.png";
 
 const categories = [
   { title: "Textiles", subtitle: "Raw linen & soft weaves", img: CAT_LINEN, span: "md:col-span-5", ratio: "aspect-[3/4]" },
