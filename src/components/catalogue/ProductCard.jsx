@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Image } from "@/components/ui/image";
 import { useCart } from "@/lib/CartContext";
+import { supabase } from '@/lib/supabase';
 
 export default function ProductCard({ product }) {
   const { addItem } = useCart();
