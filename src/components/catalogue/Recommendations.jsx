@@ -1,5 +1,3 @@
-supabase.from('products').select('*').eq('category', product.category).neq('id', product.id).limit(2)
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
