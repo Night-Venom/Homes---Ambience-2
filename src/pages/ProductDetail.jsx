@@ -1,5 +1,3 @@
-supabase.from('products').select('*').order('bestselling_rank');
-
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
@@ -16,16 +14,23 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let active = true;
-    setLoading(true);
-    db.entities.Product.get(id)
-      .then((p) => active && setProduct(p))
-      .catch(() => active && setProduct(null))
-      .finally(() => active && setLoading(false));
-    return () => {
-      active = false;
-    };
-  }, [id]);
+  let active = true
+  setLoading(true)
+
+  supabase
+    .from('products')
+    .select('*')
+    .eq('id', id)
+    .maybeSingle()
+    .then(({ data, error }) => {
+      if (active) setProduct(error ? null : data)
+    })
+    .finally(() => active && setLoading(false))
+
+  return () => {
+    active = false
+  }
+}, [id])
 
   if (loading) {
     return (
