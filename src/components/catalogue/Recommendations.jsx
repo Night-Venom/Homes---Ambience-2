@@ -39,7 +39,7 @@ export default function Recommendations({ product }) {
     <section className="bg-secondary-bg border-t border-border">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-20 md:py-28">
         <p className="text-[12px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
-          Curated by Claude Opus 4.8
+          You may also like
         </p>
         <h2 className="font-heading text-[clamp(1.75rem,3.5vw,3rem)] leading-[1.05] text-foreground">
           Recommended for You
