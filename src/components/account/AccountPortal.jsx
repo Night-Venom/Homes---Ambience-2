@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { supabase } from '@/lib/supabase';
 
 export default function AccountPortal() {
   const [mode, setMode] = useState("signin");
