@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Image } from "@/components/ui/image";
 import { Search, X } from "lucide-react";
+import { supabase } from '@/lib/supabase';
 
 export default function SearchOverlay({ open, onClose }) {
   const [query, setQuery] = useState("");
