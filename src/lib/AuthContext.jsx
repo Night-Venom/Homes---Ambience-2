@@ -7,32 +7,25 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [isLoadingAuth, setIsLoadingAuth] = useState(true)
 
-  async function loadUser(authUser) {
-    if (!authUser) {
-      setUser(null)
-      setIsLoadingAuth(false)
-      return
-    }
-
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('full_name, email')
-      .eq('id', authUser.id)
-      .maybeSingle()
-
-    setUser({
-      ...authUser,
-      full_name: profile?.full_name ?? '',
-      email: profile?.email ?? authUser.email,
-    })
+  function setSessionUser(authUser) {
+    setUser(
+      authUser
+        ? {
+            ...authUser,
+            full_name: authUser.user_metadata?.full_name || '',
+          }
+        : null,
+    )
     setIsLoadingAuth(false)
   }
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => loadUser(data.session?.user))
+    supabase.auth.getSession().then(({ data }) => {
+      setSessionUser(data.session?.user)
+    })
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      loadUser(session?.user)
+      setSessionUser(session?.user)
     })
 
     return () => listener.subscription.unsubscribe()
@@ -40,6 +33,7 @@ export function AuthProvider({ children }) {
 
   async function logout() {
     await supabase.auth.signOut()
+    window.location.assign('/')
   }
 
   return (
