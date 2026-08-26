@@ -7,7 +7,7 @@
     /* Homes & Ambience — Monochromatic Porcelain */
     --background: #F8F6F1         /* Porcelain White */
     --secondary-bg: 40 14% 97%;        /* Uniform porcelain white */
-    --foreground: 215 28% 17%;         /* Slate Ink */
+    --foreground: #123123;         /* Slate Ink */
     --muted-foreground: 215 14% 45%;   /* Muted Slate */
     --border: 220 10% 72%;             /* Charcoal Hairline */
     --accent: 215 16% 52%;             /* Slate Accent */
