@@ -26,7 +26,7 @@ export default function AccountPortal() {
     setLoading(true);
     const { error } = await supabase.auth.signInWithPassword({ email, password })
 if (error) throw error
-window.location.assign('/account')
+window.location.assign('/')
   };
 
   const handleRegister = async (e) => {
@@ -47,7 +47,7 @@ window.location.assign('/account')
 if (error) throw error
 if (!data.session) throw new Error('Email confirmation is still enabled in Supabase.')
 
-window.location.assign('/account')
+window.location.assign('/')
   };
 
   return (
