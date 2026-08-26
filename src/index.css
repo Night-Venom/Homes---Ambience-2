@@ -5,23 +5,23 @@
 @layer base {
   :root {
     /* Homes & Ambience — Monochromatic Porcelain */
-    --background: 0 100% 5%;     /* Porcelain White */
-    --secondary-bg: 40 14% 97%;        /* Uniform porcelain white */
-    --foreground: #123123;         /* Slate Ink */
+    --background: 42.86 33.33% 95.88%;     /* Porcelain White */
+    --secondary-bg: 40 28.57% 91.76%;        /* Uniform porcelain white */
+    --foreground: 40 4.35% 13.53%;         /* Slate Ink */
     --muted-foreground: 215 14% 45%;   /* Muted Slate */
     --border: 220 10% 72%;             /* Charcoal Hairline */
-    --accent: 215 16% 52%;             /* Slate Accent */
-    --accent-2: 215 12% 60%;           /* Light Slate */
+    --accent: 33.6 12.32% 60.2%;             /* Slate Accent */
+    --accent-2: 78.75 7.69% 59.22%;           /* Light Slate */
     --accent-dark: 215 25% 27%;        /* Slate Block */
 
     --card: 0 0% 100%;
     --card-foreground: 215 28% 17%;
     --popover: 0 0% 100%;
     --popover-foreground: 215 28% 17%;
-    --primary: 215 28% 17%;
-    --primary-foreground: 40 14% 97%;
-    --secondary: 40 14% 97%;
-    --secondary-foreground: 215 28% 17%;
+    --primary: 33.6 12.32% 60.2%;
+    --primary-foreground: 33.6 12.32% 60.2%;
+    --secondary: 78.75 7.69% 59.22%;
+    --secondary-foreground: 78.75 7.69% 59.22%;
     --muted: 40 14% 97%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
