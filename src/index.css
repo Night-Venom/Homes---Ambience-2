@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* Homes & Ambience — Monochromatic Porcelain */
-    --background: 40 14% 97%;          /* Porcelain White */
+    --background: #F8F6F1         /* Porcelain White */
     --secondary-bg: 40 14% 97%;        /* Uniform porcelain white */
     --foreground: 215 28% 17%;         /* Slate Ink */
     --muted-foreground: 215 14% 45%;   /* Muted Slate */
