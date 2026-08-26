@@ -17,7 +17,7 @@ const SORTS = [
   { key: "alpha", label: "Alphabetical" },
 ];
 
-const HERO_IMG = "/__generating__/a9b5e70e-1b31-4024-a423-aefbbc3416c7.png";
+const HERO_IMG = "https://images.unsplash.com/photo-1616046229478-9901c5536a45?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 export default function Catalogue() {
   const [products, setProducts] = useState([]);
