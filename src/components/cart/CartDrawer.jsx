@@ -137,7 +137,7 @@ export default function CartDrawer() {
                 £{subtotal.toFixed(0)}
               </span>
             </div>
-            <p className="text-[12px] text-secondary mb-5">
+            <p className="text-[12px] text-green-700 mb-5">
               FREE Shipping on all UK orders
             </p>
             <button
