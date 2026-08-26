@@ -12,19 +12,28 @@ export default function Recommendations({ product }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let active = true;
-    setLoading(true);
-    db.functions
-      .invoke("recommendProducts", { product_id: product.id })
-      .then((res) => {
-        if (active) setRecs(res.data?.recommendations || []);
-      })
-      .catch(() => {})
-      .finally(() => active && setLoading(false));
-    return () => {
-      active = false;
-    };
-  }, [product.id]);
+  let active = true
+
+  async function loadRecommendations() {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .eq('category', product.category)
+      .neq('id', product.id)
+      .order('bestselling_rank', { ascending: true })
+      .limit(2)
+
+    if (active) {
+      setRecs(error ? [] : data)
+      setLoading(false)
+    }
+  }
+
+  loadRecommendations()
+  return () => {
+    active = false
+  }
+}, [product.id, product.category])
 
   return (
     <section className="bg-secondary-bg border-t border-border">
