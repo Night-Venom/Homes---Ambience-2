@@ -24,40 +24,30 @@ export default function AccountPortal() {
     e.preventDefault();
     setError("");
     setLoading(true);
-    try {
-      await db.auth.loginViaEmailPassword(email, password);
-      window.location.href = "/account";
-    } catch (err) {
-      setError(err.message || "Invalid email or password");
-    } finally {
-      setLoading(false);
-    }
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+if (error) throw error
+window.location.assign('/account')
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
-    if (password !== confirm) {
-      setError("Passwords do not match");
-      return;
-    }
+
+
+    
     setLoading(true);
-    try {
-      await db.auth.register({ email, password });
-      await db.auth.loginViaEmailPassword(email, password);
-      if (name) {
-        try {
-          await db.auth.updateMe({ full_name: name });
-        } catch {
-          /* name is optional */
-        }
-      }
-      window.location.href = "/account";
-    } catch (err) {
-      setError(err.message || "Registration failed");
-    } finally {
-      setLoading(false);
-    }
+    const { data, error } = await supabase.auth.signUp({
+  email,
+  password,
+  options: {
+    data: { full_name: name },
+  },
+})
+
+if (error) throw error
+if (!data.session) throw new Error('Email confirmation is still enabled in Supabase.')
+
+window.location.assign('/account')
   };
 
   return (
@@ -124,7 +114,6 @@ export default function AccountPortal() {
                 <Field label="Name" type="text" value={name} onChange={setName} />
                 <Field label="Email" type="email" value={email} onChange={setEmail} />
                 <Field label="Password" type="password" value={password} onChange={setPassword} />
-                <Field label="Confirm password" type="password" value={confirm} onChange={setConfirm} />
                 <button
                   type="submit"
                   disabled={loading}
