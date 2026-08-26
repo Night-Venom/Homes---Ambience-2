@@ -138,7 +138,7 @@ export default function CartDrawer() {
               </span>
             </div>
             <p className="text-[12px] text-muted-foreground mb-5">
-              Shipping & taxes calculated at checkout.
+              FREE Shipping on all UK orders
             </p>
             <button
               onClick={openCheckout}
