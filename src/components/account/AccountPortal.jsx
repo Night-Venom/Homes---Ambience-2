@@ -9,7 +9,6 @@ export default function AccountPortal() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -18,35 +17,56 @@ export default function AccountPortal() {
     setError("");
   };
 
-  const handleSignIn = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-if (error) throw error
-window.location.assign('/')
-  };
+const handleSignIn = async (e) => {
+  e.preventDefault()
+  setError("")
+  setLoading(true)
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    setError("");
+  try {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
 
+    if (error) throw error
 
-    
-    setLoading(true);
+    window.location.assign('/')
+  } catch (err) {
+    setError(err.message || 'Invalid email or password')
+  } finally {
+    setLoading(false)
+  }
+}
+
+const handleRegister = async (e) => {
+  e.preventDefault()
+  setError("")
+  setLoading(true)
+
+  try {
     const { data, error } = await supabase.auth.signUp({
-  email,
-  password,
-  options: {
-    data: { full_name: name },
-  },
-})
+      email,
+      password,
+      options: {
+        data: { full_name: name },
+      },
+    })
 
-if (error) throw error
-if (!data.session) throw new Error('Email confirmation is still enabled in Supabase.')
+    if (error) throw error
 
-window.location.assign('/')
-  };
+    if (!data.session) {
+      throw new Error(
+        'Email confirmation is enabled. In Supabase, turn off Authentication → Providers → Email → Confirm email.',
+      )
+    }
+
+    window.location.assign('/')
+  } catch (err) {
+    setError(err.message || 'Could not create your account')
+  } finally {
+    setLoading(false)
+  }
+}
 
   return (
     <section className="bg-background">
