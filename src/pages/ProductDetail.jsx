@@ -7,6 +7,7 @@ import { Image } from "@/components/ui/image";
 import { useCart } from "@/lib/CartContext";
 import { ArrowLeft } from "lucide-react";
 import Recommendations from "@/components/catalogue/Recommendations";
+import { supabase } from '@/lib/supabase';
 
 export default function ProductDetail() {
   const { id } = useParams();
